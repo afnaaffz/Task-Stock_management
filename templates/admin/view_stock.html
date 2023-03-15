@@ -1,7 +1,7 @@
 {% extends "admin/admin base.html" %}
 {% block content %}
 
-<div class="card" style="width: 80rem;">
+<div class="card" style="width: 70rem;">
   <div class="card-body">
     <h5 class="card-title">Manage Stock</h5>
 
@@ -11,10 +11,11 @@
     <tr>
       <th scope="col">SL</th>
       <th scope="col">NAME</th>
-      <th scope="col">PRODUCT</th>
-      <th scope="col">PRODUCT DESCRIPTION</th>
+      <th scope="col">STOCK ID</th>
+      <th scope="col">DESCRIPTION</th>
       <th scope="col">PRICE</th>
       <th scope="col">QUANTITY</th>
+      <th></th><th></th>
 
     </tr>
   </thead>
@@ -23,8 +24,8 @@
     <tr>
       <td>{{forloop.counter}}</td>
       <td>{{i.name}}</td>
-      <td>{{i.product}}</td>
-      <td>{{i.product_description}}</td>
+      <td>{{i.stock_id}}</td>
+      <td>{{i.description}}</td>
       <td>{{i.price}}</td>
       <td>{{i.quantity}}</td>
 

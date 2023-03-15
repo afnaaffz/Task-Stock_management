@@ -38,15 +38,28 @@ def adminbase(requset):
     return render(requset,"admin/admin base.html")
 
 @login_required(login_url = 'login_page')
+def add_stock(request):
+    form = StockForm()
+    if request.method =='POST':
+        form = StockForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("customers_data")
+    return render(request,'admin/add_stock.html',{'form':form})
+
+@login_required(login_url = 'login_page')
+def view_stock(request):
+    data = Stock.objects.all()
+    return render(request,'admin/view_stock.html',{'data':data})
+
+
+
+@login_required(login_url = 'login_page')
 def customers_data(request):
     data = CustomerRegister.objects.all()
     print(data)
     return render(request,"admin/customers_data.html",{'data':data})
 
-@login_required(login_url = 'login_page')
-def manage_stock(request):
-    data = Stock.objects.all()
-    return render(request,'admin/manage_stock.html',{'data':data})
 
 @login_required(login_url = 'login_page')
 def update(request, id):
@@ -57,7 +70,7 @@ def update(request, id):
             form = StockForm(request.POST, instance=a)
             if form.is_valid():
                 form.save()
-                return redirect("manage_stock")
+                return redirect("view_stock")
 
         return render(request, "admin/update.html", {'form': form})
 
@@ -65,24 +78,7 @@ def update(request, id):
 def delete_stock(request,id):
     wm = Stock.objects.get(id=id)
     wm.delete()
-    return redirect("manage_stock")
-
-@login_required(login_url = 'login_page')
-def delete_data(request,id):
-    wm = Stock.objects.get(id=id)
-    wm.delete()
-    return redirect("customers_data")
-
-@login_required(login_url = 'login_page')
-def add_customers_data(request):
-    form = StockForm()
-    if request.method =='POST':
-        form = StockForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect("view_customers_data")
-    return render(request,'admin/add_customers_data.html',{'form':form})
-
+    return redirect("view_stock")
 
 
 
@@ -113,7 +109,7 @@ def customer_register(request):
 
 @login_required(login_url = 'login_page')
 def view_customers_data(request):
-    data = Stock.objects.all()
+    data = Stock.objects.filter(id=2).order_by('-id')[:1]
     return render(request,'customer/view_customers_data.html',{'data':data})
 
 

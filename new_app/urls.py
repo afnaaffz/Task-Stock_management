@@ -10,11 +10,10 @@ urlpatterns = [
 
    path("adminbase", views.adminbase, name="adminbase"),
    path("customers_data", views.customers_data, name="customers_data"),
-   path("manage_stock", views.manage_stock, name="manage_stock"),
-   path("add_customers_data", views.add_customers_data, name="add_customers_data"),
+   path("view_stock", views.view_stock, name="view_stock"),
+   path("add_stock", views.add_stock, name="add_stock"),
    path("update/<int:id>/", views.update, name="update"),
    path("delete_stock/<int:id>/", views.delete_stock, name="delete_stock"),
-   path("delete_data/<int:id>/", views.delete_data, name="delete_data"),
 
 
 
