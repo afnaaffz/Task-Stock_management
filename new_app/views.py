@@ -109,7 +109,7 @@ def customer_register(request):
 
 @login_required(login_url = 'login_page')
 def view_customers_data(request):
-    data = Stock.objects.filter(id=2).order_by('-id')[:1]
+    data = Stock.objects.all()
     return render(request,'customer/view_customers_data.html',{'data':data})
 
 
